@@ -1,0 +1,72 @@
+{% load static %}
+
+<footer class="footer">
+    <div class="div contact">
+        <div class="container table">
+            <div class="col-8">
+                <div class="row mb-2">
+                    <div class="col-3 title">
+                        <div class="footer-br">
+                            <span>Ваш аккаунт</span>
+                        </div>
+                    </div>
+
+                    <div class="col-3 title">
+                        <div class="footer-br">
+                            <span>Категории</span>
+                        </div>
+                    </div>
+                    <div class="col-3 title">
+                        <div class="footer-br">
+                            <span>Информация</span>
+                        </div>
+                    </div>
+                    <div class="col-3 title">
+                        <div class="footer-br">
+                            <span>Услуги</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#"><p>Профиль</p></a>
+                        <a href="#"><p>Вход</p></a>
+                        <a href="#"><p>Регистрация</p></a>
+                    </div>
+                    <div class="col-3">
+                        {% for category in categories %}
+                        <a href="#">
+                            <p>{{ category.name }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <div class="col-3">
+                        <a href="#"><p>Для авторов</p></a>
+                        <a href="#"><p>Для компаний</p></a>
+                        <a href="#"><p>Документы</p></a>
+                        <a href="#"><p>Соглашение</p></a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#"><p>Реклама</p></a>
+                        <a href="#"><p>Тарифы</p></a>
+                        <a href="#"><p>Контент</p></a>
+                        <a href="#"><p>Семинары</p></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="basement">
+        <div class="container">
+            <div class="years d-flex justify-content-between">
+                <p><b>© 2018-2021 ООО “Интерьерные решения”.</b> Копирование запрещено</p>
+                <p>Политика конфиденциальности</p>
+
+            </div>
+        </div>
+    </div>
+
+
+</footer>

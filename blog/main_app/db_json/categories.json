@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Разработка",
+    "description": "Разработка",
+    "draft": "False"
+  },
+  {
+    "name": "Администрирование",
+    "description": "Администрирование",
+    "draft": "False"
+  },
+  {
+    "name": "Дизайн",
+    "description": "Дизайн",
+    "draft": "False"
+  }
+]

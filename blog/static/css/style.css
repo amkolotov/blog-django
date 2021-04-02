@@ -121,7 +121,9 @@ a:hover {
     border-color: #a3bcdf;
 }
 
-
+.review .btn {
+    width: 70%;
+}
 
 .login {
     margin-top: 126px;

@@ -20,11 +20,6 @@
                         </form>
                     </div>
 
-                    {% if user.is_superuser %}
-                    <a class="p-2 text-dark" href="{% url 'admin:index' %}">Админка</a>
-                    {% endif %}
-
-
                 </div>
                 <div class="col-4 m-auto text-center">
                     {% if user.is_authenticated %}
@@ -40,6 +35,12 @@
                     </a>
                     <a class="p-2 text-dark" href="{% url 'auth_app:login' %}">Войти</a>
                     {% endif %}
+
+                    {% if user.is_superuser %}
+                    <a class="p-2 text-dark" href="{% url 'admin:index' %}">Админка</a>
+                    {% endif %}
+
+
                 </div>
 
             </div>

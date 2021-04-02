@@ -51,9 +51,9 @@ class Command(BaseCommand):
                 category=article['category'],
                 poster=article['poster'],
                 short_desc=article['short_desc'],
-                text =article['text'],
-                news =article['news'],
-                draft =article['draft']
+                text=article['text'],
+                news=article['news'],
+                draft=article['draft']
             )
             for item in article['tags']:
                 tag = Tag.objects.filter(name=item).first()

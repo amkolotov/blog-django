@@ -1,10 +1,12 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.base import View
 
+from .forms import ReviewForm
 from .models import Article, Category, Tag
 
 
@@ -52,6 +54,7 @@ class TagArticleListView(ListView):
 class ArticleDetailView(DetailView):
     """Просмотр статьи"""
     model = Article
+    extra_context = {'form': ReviewForm}
 
 
 class SearchView(View):
@@ -71,3 +74,19 @@ class SearchView(View):
                 return redirect(reverse('main_app:article', args=[article.first().pk]))
 
         return redirect(reverse('main_app:index'))
+
+
+class AddReviewView(LoginRequiredMixin, View):
+    """Добавление отзыва на товар"""
+    login_url = reverse_lazy('auth_app:login')
+
+    def post(self, request, pk):
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.article_id = pk
+            review.user = request.user
+            if request.POST.get('parent', None):
+                review.parent_id = int(request.POST.get('parent'))
+            form.save()
+        return redirect(reverse('main_app:article', args=(pk,)))

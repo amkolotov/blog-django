@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from auth_app.models import BlogUser
+
 
 class Category(models.Model):
     """Категории статей"""
@@ -51,3 +53,20 @@ class Article(models.Model):
         verbose_name_plural = 'Статьи'
         ordering = ['-pub_date']
 
+    def get_parent_reviews(self):
+        return self.reviews_set.filter(parent__isnull=True)
+
+
+class Reviews(models.Model):
+    """Отзывы пользователей о статье"""
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='Статья')
+    user = models.ForeignKey(BlogUser, on_delete=models.CASCADE, verbose_name='Пользователь')
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Родитель')
+    text = models.TextField('Отзыв')
+
+    def __str__(self):
+        return f'{self.user.username} - {self.article}'
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'

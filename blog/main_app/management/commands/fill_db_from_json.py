@@ -50,6 +50,7 @@ class Command(BaseCommand):
                 title=article['title'],
                 category=article['category'],
                 poster=article['poster'],
+                author=article['author'],
                 short_desc=article['short_desc'],
                 text=article['text'],
                 news=article['news'],

@@ -22,33 +22,32 @@ class Command(BaseCommand):
             'Хорошо написана'
         )
 
-        new_users = []
         for user in users:
-            old_user = BlogUser.objects.filter(username=user['username']).first()
-            profile = BlogUserProfile.objects.get(user=old_user)
+            profile = BlogUserProfile.objects.get(user__username=user['username'])
             profile.avatar = f'avatar/{user["avatar"]}'
             profile.save()
-            new_users.append(old_user)
 
         articles = Article.objects.all()
+
+        users = list(BlogUser.objects.all())
 
         Reviews.objects.all().delete()
 
         for article in articles:
-            random.shuffle(new_users)
+            random.shuffle(users)
             review_id = None
-            for i in range(len(new_users)):
+            for i in range(len(users)):
                 if i % 2 == 0:
                     review = Reviews.objects.create(
                         article=article,
-                        user=new_users[i],
+                        user=users[i],
                         text=random.choice(reviews)
                     )
                     review_id = review.id
                 else:
                     Reviews.objects.create(
                         article=article,
-                        user=new_users[i],
+                        user=users[i],
                         parent_id=review_id,
                         text=random.choice(reviews)
                     )

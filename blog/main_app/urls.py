@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ArticleListView, IndexView, TagArticleListView, ArticleDetailView
+from .views import ArticleListView, IndexView, TagArticleListView, ArticleDetailView, SearchView
 
 app_name = 'main_app'
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path('tag/<int:pk>/', TagArticleListView.as_view(), name='tag_articles'),
     path('tag/<int:pk>/page/<int:page>/', TagArticleListView.as_view(), name='page_tag'),
     path('article/<int:pk>/', ArticleDetailView.as_view(), name='article'),
+    path('search/', SearchView.as_view(), name='search'),
+
 ]

@@ -33,6 +33,25 @@ img {
     background: #F1F1F1;
 }
 
+.search input {
+      font-size: 1rem;
+      display: block;
+      width: 90%;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      background: #F1F1F1;
+      padding-left: 5px;
+}
+
+.search input:focus {
+      outline: none;
+}
+
+.search img {
+    width: 15px;
+    heigt: 15px;
+}
+
 .ava {
     height: 2rem;
     width: 2rem;

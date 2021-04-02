@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Мои статьи
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row my-4 align-items-center my-articles">
+
+        <div class="col text-center">
+            <h5>Наименование</h5>
+        </div>
+
+        <div class="col text-center">
+            <h5>Теги</h5>
+        </div>
+
+        <div class="col text-center">
+            <h5>Постер</h5>
+        </div>
+
+        <div class="col text-center">
+            <h5>Дата публикации</h5>
+        </div>
+
+        <div class="col text-center">
+            <h5>Дата редактирования</h5>
+        </div>
+
+        <div class="col text-center">
+            <h5>Опубликована</h5>
+        </div>
+
+        <div class="col-1 text-center">
+            <a href="{% url 'account_app:new_article' %}">
+                <button class="btn btn-secondary">Написать</button>
+            </a>
+        </div>
+
+    </div>
+
+    {% if object_list.count %}
+
+    {% for article in object_list %}
+
+    <div class="row my-4 align-items-center">
+
+        <div class="col">
+            <a href="{% url 'main_app:article' article.pk %}">
+                <p>{{ article.title }}</p>
+            </a>
+        </div>
+
+        <div class="col">
+            {% for tag in article.tags.all %}
+            <a href="{% url 'main_app:tag_articles' tag.pk %}">{{ tag.name }},&ensp;</a>
+            {% endfor %}
+        </div>
+
+        <div class="col">
+            <img src="{% get_media_prefix %}{{ article.poster }}" alt="poster">
+        </div>
+        <div class="col">
+            <p>{{ article.pub_date }}</p>
+        </div>
+        <div class="col">
+            <p>{{ article.last_edit }}</p>
+        </div>
+        <div class="col">
+            {% if article.draft %}
+            <p>нет</p>
+            {% else %}
+            <p>да</p>
+            {% endif %}
+        </div>
+        <div class="col-1">
+            <a href="{% url 'account_app:edit_article' article.pk %}"><button class="btn btn-secondary">Редактировать</button></a>
+        </div>
+
+
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+    <h1 class="text-center mt-5">У вас пока нет статей!</h1>
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
+

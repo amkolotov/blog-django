@@ -19,15 +19,17 @@
                 </div>
                 <div class="col-4 m-auto text-center">
                     {% if user.is_authenticated %}
-                    <a href="#">
-                        <img class="ava" src="{% static 'img/frame-ava.svg' %}" alt="avatar">
+                    <a class="p-2 text-dark" href="{% url 'auth_app:edit' %}">{{ user.username }}</a>
+                    <a href="% url 'auth_app:edit' %}">
+                        <img class="ava" src="{% get_media_prefix %}{{ user.bloguserprofile.avatar }}" alt="avatar">
                     </a>
-                    <a class="p-2 text-dark" href="#">Выйти</a>
+                    <a class="p-2 text-dark" href="{% url 'auth_app:logout' %}">Выйти</a>
+                    <a class="p-2 text-dark" href="{% url 'account_app:my_articles' %}">Статьи</a>
                     {% else %}
                     <a href="#">
-                        <img src="{% static 'img/frame-ava.svg' %}" alt="ava">
+                        <img class="anonim-ava" src="{% static 'img/frame-ava.svg' %}" alt="ava">
                     </a>
-                    <a class="p-2 text-dark" href="#">Войти</a>
+                    <a class="p-2 text-dark" href="{% url 'auth_app:login' %}">Войти</a>
                     {% endif %}
                 </div>
 

@@ -24,10 +24,25 @@ body, a {
     color: #585858;
 }
 
+img {
+    width: 100%;
+}
+
 .menu {
     height: 48px;
     background: #F1F1F1;
 }
+
+.ava {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
+.anonim-ava {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 
 .content {
     flex: 1 0 auto;
@@ -82,10 +97,6 @@ a:hover {
     font-size: 1.2rem;
 }
 
-.poster img {
-    width: 100%;
-}
-
 .pagination .active .page-link {
     background-color: #a3bcdf;
     border-color: #a3bcdf;
@@ -93,6 +104,16 @@ a:hover {
 
 
 
+.login {
+    margin-top: 126px;
+    width: 480px;
+    margin-bottom: 240px;
+}
+
+.edit {
+    margin-top: 56px;
+    width: 480px;
+}
 
 
 

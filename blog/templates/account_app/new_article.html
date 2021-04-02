@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Написание статьи
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-3 text-center">Написание статьи</h1>
+    <form method="post" action="{% url 'account_app:new_article' %}" enctype="multipart/form-data" class="mb-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="form-control mt-5 btn btn-secondary" value="Сохранить">
+    </form>
+</div>
+{% endblock %}

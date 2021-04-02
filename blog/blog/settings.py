@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'main_app',
     'auth_app',
+    'account_app',
 ]
 
 MIDDLEWARE = [
@@ -108,6 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'auth_app.BlogUser'
+
+LOGIN_REDIRECT_URL = 'main_app:index'
+LOGOUT_REDIRECT_URL = 'main_app:index'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

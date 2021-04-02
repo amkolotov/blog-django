@@ -11,5 +11,4 @@ urlpatterns = [
     path('tag/<int:pk>/', TagArticleListView.as_view(), name='tag_articles'),
     path('tag/<int:pk>/page/<int:page>/', TagArticleListView.as_view(), name='page_tag'),
     path('article/<int:pk>/', ArticleDetailView.as_view(), name='article'),
-
 ]

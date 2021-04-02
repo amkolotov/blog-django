@@ -46,5 +46,18 @@ class Command(BaseCommand):
             _user = BlogUser.objects.get(username=user_name)
             article['author'] = _user
 
-            Article.objects.create(**article)
+            art = Article.objects.create(
+                title=article['title'],
+                category=article['category'],
+                poster=article['poster'],
+                short_desc=article['short_desc'],
+                text =article['text'],
+                news =article['news'],
+                draft =article['draft']
+            )
+            for item in article['tags']:
+                tag = Tag.objects.filter(name=item).first()
+                art.tags.add(tag)
+
+
 

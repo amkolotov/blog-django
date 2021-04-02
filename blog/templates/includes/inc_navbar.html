@@ -6,10 +6,19 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-8 m-auto d-flex justify-content-between">
+                    <div class="col-8 mx-0">
                     <a class="p-2 text-dark" href="{% url 'main_app:articles' 0 %}">Все категории</a>
                     {% for category in categories %}
                     <a class="p-2 text-dark" href="{% url 'main_app:articles' category.pk %}">{{ category.name }}</a>
                     {% endfor %}
+                    </div>
+                    <div class="col-4 search">
+
+                        <form action="{% url 'main_app:search' %}" class="form-inline">
+                            <img src="{% static 'img/search.svg' %}" alt="search">
+                            <input type="text" name="search">
+                        </form>
+                    </div>
 
                     {% if user.is_superuser %}
                     <a class="p-2 text-dark" href="{% url 'admin:index' %}">Админка</a>

@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
 from django.views.generic import TemplateView, ListView, DetailView
@@ -52,3 +52,22 @@ class TagArticleListView(ListView):
 class ArticleDetailView(DetailView):
     """Просмотр статьи"""
     model = Article
+
+
+class SearchView(View):
+    """Обработка поискового запроса"""
+
+    def get(self, request):
+        search = request.GET.get('search')
+        if search:
+            category = Category.objects.filter(name__icontains=search, draft=False)
+            if category:
+                return redirect(reverse('main_app:articles', args=[category.first().pk]))
+            tag = Tag.objects.filter(name__icontains=search)
+            if tag:
+                return redirect(reverse('main_app:tag_articles', args=[tag.first().pk]))
+            article = Article.objects.filter(title__icontains=search, draft=False)
+            if article:
+                return redirect(reverse('main_app:article', args=[article.first().pk]))
+
+        return redirect(reverse('main_app:index'))
